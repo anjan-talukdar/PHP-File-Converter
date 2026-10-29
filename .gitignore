@@ -1,0 +1,6 @@
+/storage/uploads/*
+/storage/temp/*
+!/storage/uploads/.gitkeep
+!/storage/temp/.gitkeep
+/vendor/
+/tools/

@@ -1,0 +1,7 @@
+{
+  "name": "local/php-file-converter",
+  "description": "Local PHP GUI for safe media conversion using FFmpeg and ImageMagick.",
+  "type": "project",
+  "require": { "php": ">=8.3", "ext-fileinfo": "*", "ext-json": "*" },
+  "autoload": { "psr-4": { "App\\\\": "src/" } }
+}
