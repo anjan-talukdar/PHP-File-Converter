@@ -68,10 +68,15 @@ try {
     Get-ChildItem -LiteralPath $ffmpegBinSource -Force | Copy-Item -Destination $ffmpegTarget -Recurse -Force
     Get-ChildItem -LiteralPath $imageSourceRoot -Force | Copy-Item -Destination $imageTarget -Recurse -Force
 
-    & $ffprobeExe -version | Select-Object -First 1
-    if ($LASTEXITCODE -ne 0) { throw 'FFprobe did not start after installation.' }
-    & $magickExe -version | Select-Object -First 1
-    if ($LASTEXITCODE -ne 0) { throw 'ImageMagick did not start after installation.' }
+    $ffprobeVersion = & $ffprobeExe -version
+    $ffprobeExitCode = $LASTEXITCODE
+    if ($ffprobeExitCode -ne 0) { throw 'FFprobe did not start after installation.' }
+    Write-Host ($ffprobeVersion | Select-Object -First 1)
+
+    $magickVersion = & $magickExe -version
+    $magickExitCode = $LASTEXITCODE
+    if ($magickExitCode -ne 0) { throw 'ImageMagick did not start after installation.' }
+    Write-Host ($magickVersion | Select-Object -First 1)
     Write-Host 'Converter setup complete. Start the app with: php -S 127.0.0.1:8080 -t public'
 }
 finally {
